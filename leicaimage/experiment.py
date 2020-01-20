@@ -67,7 +67,7 @@ class Experiment:
             return ""
 
     @property
-    def well_columns(self) -> List[Optional[int]]:
+    def well_columns(self) -> List[int]:
         """Return all well columns in experiment.
 
         Equivalent to --V in files.
@@ -76,10 +76,14 @@ class Experiment:
         -------
         list of ints
         """
-        return list(set([attribute(img, "v") for img in self.images]))
+        return [
+            col
+            for col in set(attribute(img, "v") for img in self.images)
+            if col is not None
+        ]
 
     @property
-    def well_rows(self) -> List[Optional[int]]:
+    def well_rows(self) -> List[int]:
         """Return all well rows in experiment.
 
         Equivalent to --U in files.
@@ -88,7 +92,11 @@ class Experiment:
         -------
         list of ints
         """
-        return list(set([attribute(img, "u") for img in self.images]))
+        return [
+            row
+            for row in set(attribute(img, "u") for img in self.images)
+            if row is not None
+        ]
 
     def image(
         self, well_row: int, well_column: int, field_row: int, field_column: int
@@ -144,7 +152,7 @@ class Experiment:
             if attribute(i, "u") == well_column and attribute(i, "v") == well_row
         )
 
-    def field_columns(self, well_row: int, well_column: int) -> List[Optional[int]]:
+    def field_columns(self, well_row: int, well_column: int) -> List[int]:
         """Return field columns for given well.
 
         Equivalent to --X in files.
@@ -162,9 +170,11 @@ class Experiment:
             Columns found for specified well.
         """
         imgs = self.well_images(well_row, well_column)
-        return list(set([attribute(img, "x") for img in imgs]))
+        return [
+            col for col in set(attribute(img, "x") for img in imgs) if col is not None
+        ]
 
-    def field_rows(self, well_row: int, well_column: int) -> List[Optional[int]]:
+    def field_rows(self, well_row: int, well_column: int) -> List[int]:
         """Return field rows for given well.
 
         Equivalent to --Y in files.
@@ -182,7 +192,9 @@ class Experiment:
             Rows found for specified well.
         """
         imgs = self.well_images(well_row, well_column)
-        return list(set([attribute(img, "y") for img in imgs]))
+        return [
+            row for row in set(attribute(img, "y") for img in imgs) if row is not None
+        ]
 
 
 def attribute(path: str, name: str) -> Optional[int]:
