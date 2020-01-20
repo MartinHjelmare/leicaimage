@@ -63,8 +63,7 @@ class Experiment:
         )
         if tmpl:
             return str(tmpl[0])
-        else:
-            return ""
+        return ""
 
     @property
     def well_columns(self) -> List[int]:
@@ -218,8 +217,7 @@ def attribute(path: str, name: str) -> Optional[int]:
     matches = re.findall("--" + name.upper() + "([0-9]{2})", path)
     if matches:
         return int(matches[-1])
-    else:
-        return None
+    return None
 
 
 def attribute_as_str(path: str, name: str) -> Optional[str]:
@@ -243,8 +241,7 @@ def attribute_as_str(path: str, name: str) -> Optional[str]:
     matches = re.findall("--" + name.upper() + "([0-9]{2})", path)
     if matches:
         return matches[-1]
-    else:
-        return None
+    return None
 
 
 def attributes(path) -> NamedTuple:
@@ -273,14 +270,14 @@ def attributes(path) -> NamedTuple:
 
     keys: List[str] = []
     values: List[str] = []
-    for k, v in matches:
-        if k in keys:
+    for key, val in matches:
+        if key in keys:
             # keep only last key
-            i = keys.index(k)
+            i = keys.index(key)
             del keys[i]
             del values[i]
-        keys.append(k)
-        values.append(v)
+        keys.append(key)
+        values.append(val)
 
     lower_keys = [k.lower() for k in keys]
     int_values = [int(v) for v in values]
