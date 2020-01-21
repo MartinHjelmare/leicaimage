@@ -20,6 +20,7 @@ setup(
     author_email="marhje52@gmail.com",
     url=GITHUB_URL,
     packages=find_packages(exclude=["contrib", "docs", "tests*"]),
+    install_requires=["dataclasses;python_version<'3.7'"],
     include_package_data=True,
     license="MIT",
     zip_safe=False,

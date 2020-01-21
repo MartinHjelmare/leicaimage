@@ -1,9 +1,10 @@
 """Handle Leica experiment."""
 import re
-from collections import namedtuple
 from itertools import chain
 from pathlib import Path
-from typing import List, NamedTuple, Optional
+from typing import List, Mapping, Optional, Union
+
+from dataclasses import dataclass
 
 _SLIDE = "slide"
 _CHAMBER = "chamber"
@@ -240,20 +241,52 @@ def attribute_as_str(path: str, name: str) -> Optional[str]:
     """
     matches = re.findall("--" + name.upper() + "([0-9]{2})", path)
     if matches:
-        return matches[-1]
+        return str(matches[-1])
     return None
 
 
-def attributes(path) -> NamedTuple:
+@dataclass
+class PathAttributes:
+    """Represent a path with attributes."""
+
+    # pylint: disable=invalid-name, too-many-instance-attributes
+
+    L: Optional[str] = None
+    S: Optional[str] = None
+    U: Optional[str] = None
+    V: Optional[str] = None
+    J: Optional[str] = None
+    E: Optional[str] = None
+    O: Optional[str] = None
+    X: Optional[str] = None
+    Y: Optional[str] = None
+    T: Optional[str] = None
+    Z: Optional[str] = None
+    C: Optional[str] = None
+    l: Optional[int] = None
+    s: Optional[int] = None
+    u: Optional[int] = None
+    v: Optional[int] = None
+    j: Optional[int] = None
+    e: Optional[int] = None
+    o: Optional[int] = None
+    x: Optional[int] = None
+    y: Optional[int] = None
+    t: Optional[int] = None
+    z: Optional[int] = None
+    c: Optional[int] = None
+
+
+def attributes(path: str) -> PathAttributes:
     """Get attributes from path based on format --[A-Z].
 
-    Returns a namedtuple with upper case attributes equal to what is found
+    Returns a dataclass instance with upper case attributes equal to what is found
     in path (string) and lower case as int.
     If path holds several occurrences of same character, only the last one is kept.
 
         >>> attrs = attributes('/folder/file--X00-X01.tif')
         >>> print(attrs)
-        namedtuple('attributes', 'X x')('01', 1)
+        PathAttributes(X='01', x=1)
         >>> print(attrs.x)
         1
 
@@ -263,7 +296,9 @@ def attributes(path) -> NamedTuple:
 
     Returns
     -------
-    collections.namedtuple
+    PathAttributes
+        Return a namedtuple with upper case attributes equal to what is found
+        in path (string) and lower case as int.
     """
     # number of characters set to numbers have changed in LAS AF X !!
     matches = re.findall("--([A-Z]{1})([0-9]{2,4})", path)
@@ -279,12 +314,11 @@ def attributes(path) -> NamedTuple:
         keys.append(key)
         values.append(val)
 
-    lower_keys = [k.lower() for k in keys]
-    int_values = [int(v) for v in values]
+    cap_vals = dict(zip(keys, values))
+    low_vals = {key.lower(): int(val) for key, val in zip(keys, values)}
+    kwargs: Mapping[str, Union[int, str]] = {**cap_vals, **low_vals}
 
-    attrs = namedtuple("attributes", keys + lower_keys)
-
-    return attrs(*values + int_values)
+    return PathAttributes(**kwargs)
 
 
 def _pattern(*names: str, extension: Optional[str] = None) -> str:
