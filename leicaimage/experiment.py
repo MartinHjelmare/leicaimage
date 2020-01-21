@@ -17,10 +17,14 @@ _SCANNING_TEMPLATE = r"{ScanningTemplate}"
 class Experiment:
     """Leica Matrix Screener experiment."""
 
+    # pylint: disable=too-many-instance-attributes
+
     def __init__(self, path: str) -> None:
         """Set up instance."""
         self.path = path
         self._path = Path(path)
+        self.dirname = str(self._path.parent)
+        self.basename = self._path.name
         self._slide_pattern = _pattern(_SLIDE)
         self._well_pattern = _pattern(self._slide_pattern, _CHAMBER)
         self._field_pattern = _pattern(self._well_pattern, _FIELD)
@@ -39,6 +43,14 @@ class Experiment:
     def wells(self) -> List[str]:
         """Return a list of paths to wells."""
         return sorted(str(path) for path in self._path.glob(self._well_pattern))
+
+    @property
+    def chambers(self) -> List[str]:
+        """Return a list of paths to chambers.
+
+        This is an alias for wells.
+        """
+        return self.wells
 
     @property
     def fields(self) -> List[str]:
