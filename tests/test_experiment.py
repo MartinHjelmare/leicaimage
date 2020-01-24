@@ -4,6 +4,7 @@ from pathlib import Path
 import pytest
 
 from leicaimage import Experiment
+from leicaimage.experiment import _ADDITIONAL_DATA, _SCANNING_TEMPLATE
 
 
 @pytest.fixture(name="experiment")
@@ -51,3 +52,12 @@ def test_images(experiment):
     ]
 
     assert experiment.images == images
+
+
+def test_scanning_template(experiment):
+    """Test experiment scanning template."""
+    template = str(
+        Path(experiment.path) / _ADDITIONAL_DATA / f"{_SCANNING_TEMPLATE}test.xml"
+    )
+
+    assert experiment.scanning_template == template
