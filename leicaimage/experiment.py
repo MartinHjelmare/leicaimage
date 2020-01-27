@@ -227,10 +227,8 @@ def attribute(path: str, name: str) -> Optional[int]:
     integer
         Returns number found in path behind --name as an integer.
     """
-    matches = re.findall("--" + name.upper() + "([0-9]{2})", path)
-    if matches:
-        return int(matches[-1])
-    return None
+    attr = attribute_as_str(path, name)
+    return int(attr) if attr is not None else None
 
 
 def attribute_as_str(path: str, name: str) -> Optional[str]:
