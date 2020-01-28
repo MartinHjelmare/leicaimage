@@ -1,5 +1,13 @@
 # Change Log
 
+## [0.2.0](https://github.com/MartinHjelmare/leicaimage/tree/0.2.0) (2020-01-28)
+[Full Changelog](https://github.com/MartinHjelmare/leicaimage/compare/0.1.0...0.2.0)
+
+**Merged pull requests:**
+
+- Add release procedure [\#7](https://github.com/MartinHjelmare/leicaimage/pull/7) ([MartinHjelmare](https://github.com/MartinHjelmare))
+- Update setup.py [\#6](https://github.com/MartinHjelmare/leicaimage/pull/6) ([MartinHjelmare](https://github.com/MartinHjelmare))
+
 ## [0.1.0](https://github.com/MartinHjelmare/leicaimage/tree/0.1.0) (2020-01-27)
 **Merged pull requests:**
 
