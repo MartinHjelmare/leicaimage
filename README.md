@@ -29,12 +29,10 @@ The module can be used to:
 
 ## Installation
 
-Clone the github repo then install using `pip`:
+Python 3.6+ is required. Install using `pip`:
 
 ```bash
-git clone https://github.com/MartinHjelmare/leicaimage.git
-cd leicaimage
-pip install .
+pip install leicaimage
 ```
 
 ## Examples
