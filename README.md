@@ -1,6 +1,6 @@
 # leicaimage
 
-[![build-status-image]][travis]
+[![build-badge]][build]
 
 Handle Leica Matrix Screener experiment images
 
@@ -86,5 +86,7 @@ pip install -r requirements_dev.txt
 tox
 ```
 
-[build-status-image]: https://travis-ci.com/MartinHjelmare/leicaimage.svg?branch=master
-[travis]: https://travis-ci.com/MartinHjelmare/leicaimage
+![Test](https://github.com/MartinHjelmare/leicaimage/workflows/Test/badge.svg)
+
+[build-badge]: https://github.com/MartinHjelmare/leicaimage/workflows/Test/badge.svg
+[build]: https://github.com/MartinHjelmare/leicaimage/actions
