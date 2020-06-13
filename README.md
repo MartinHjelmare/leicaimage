@@ -86,7 +86,5 @@ pip install -r requirements_dev.txt
 tox
 ```
 
-![Test](https://github.com/MartinHjelmare/leicaimage/workflows/Test/badge.svg)
-
 [build-badge]: https://github.com/MartinHjelmare/leicaimage/workflows/Test/badge.svg
 [build]: https://github.com/MartinHjelmare/leicaimage/actions
