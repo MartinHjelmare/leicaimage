@@ -3,6 +3,7 @@
 help:
 	@echo "black - run black code formatter check"
 	@echo "black-format - run black code formatter format"
+	@echo "build - build a distribution"
 	@echo "clean - run both clean-build and clean-pyc"
 	@echo "clean-build - remove build artifacts"
 	@echo "clean-pyc - remove Python file artifacts"
@@ -19,6 +20,9 @@ black:
 
 black-format:
 	black ./
+
+build:
+	python setup.py sdist bdist_wheel
 
 clean: clean-build clean-pyc
 
