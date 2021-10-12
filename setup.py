@@ -6,7 +6,7 @@ from setuptools import find_packages, setup
 PROJECT_DIR = Path(__file__).parent.resolve()
 README_FILE = PROJECT_DIR / "README.md"
 LONG_DESCRIPTION = README_FILE.read_text(encoding="utf-8")
-VERSION = (PROJECT_DIR / "leicaimage" / "VERSION").read_text().strip()
+VERSION = (PROJECT_DIR / "leicaimage" / "VERSION").read_text(encoding="utf-8").strip()
 GITHUB_URL = "https://github.com/MartinHjelmare/leicaimage"
 DOWNLOAD_URL = f"{GITHUB_URL}/archive/master.zip"
 
