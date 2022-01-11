@@ -2,7 +2,7 @@
 import re
 from itertools import chain
 from pathlib import Path
-from typing import List, Mapping, Optional, Union
+from typing import List, Optional
 
 from dataclasses import dataclass
 
@@ -326,9 +326,33 @@ def attributes(path: str) -> PathAttributes:
 
     cap_vals = dict(zip(keys, values))
     low_vals = {key.lower(): int(val) for key, val in zip(keys, values)}
-    kwargs: Mapping[str, Union[int, str]] = {**cap_vals, **low_vals}
 
-    return PathAttributes(**kwargs)
+    return PathAttributes(
+        L=cap_vals.get("L"),
+        S=cap_vals.get("S"),
+        U=cap_vals.get("U"),
+        V=cap_vals.get("V"),
+        J=cap_vals.get("J"),
+        E=cap_vals.get("E"),
+        O=cap_vals.get("O"),
+        X=cap_vals.get("X"),
+        Y=cap_vals.get("Y"),
+        T=cap_vals.get("T"),
+        Z=cap_vals.get("Z"),
+        C=cap_vals.get("C"),
+        l=low_vals.get("l"),
+        s=low_vals.get("s"),
+        u=low_vals.get("u"),
+        v=low_vals.get("v"),
+        j=low_vals.get("j"),
+        e=low_vals.get("e"),
+        o=low_vals.get("o"),
+        x=low_vals.get("x"),
+        y=low_vals.get("y"),
+        t=low_vals.get("t"),
+        z=low_vals.get("z"),
+        c=low_vals.get("c"),
+    )
 
 
 def _pattern(*names: str, extension: Optional[str] = None) -> str:
