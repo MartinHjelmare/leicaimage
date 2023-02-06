@@ -174,6 +174,7 @@ def test_missing_attribute_str(experiment):
 def test_attributes(experiment):
     """Test experiment attributes."""
     path = str(Path(experiment.path) / REL_IMAGE_PATH)
+    # pylint: disable-next=use-dict-literal
     params = dict(
         L="00",
         S="00",
