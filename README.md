@@ -29,7 +29,7 @@ The module can be used to:
 
 ## Installation
 
-Python 3.7+ is required. Install using `pip`:
+Python 3.8+ is required. Install using `pip`:
 
 ```bash
 pip install leicaimage
