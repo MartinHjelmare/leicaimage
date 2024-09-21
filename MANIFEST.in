@@ -1,6 +1,0 @@
-include leicaimage/VERSION
-exclude requirements*.txt
-exclude .*
-exclude pylintrc
-exclude tox.ini
-prune tests
