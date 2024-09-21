@@ -1,4 +1,5 @@
 """Handle Leica images."""
+
 from pathlib import Path
 
 from .experiment import Experiment, attribute, attribute_as_str, attributes
