@@ -1,0 +1,21 @@
+# Changes here will be overwritten by Copier
+_commit: 8e5f4cc
+_src_path: https://github.com/browniebroke/pypackage-template
+add_me_as_contributor: false
+copyright_year: '2020'
+documentation: false
+email: marhje52@gmail.com
+full_name: Martin Hjelmare
+github_username: MartinHjelmare
+has_cli: false
+initial_commit: false
+is_django_package: false
+open_source_license: MIT
+package_name: leicaimage
+project_name: leicaimage
+project_short_description: Handle Leica Matrix Screener experiment images.
+project_slug: leicaimage
+run_poetry_install: true
+setup_github: false
+setup_pre_commit: true
+

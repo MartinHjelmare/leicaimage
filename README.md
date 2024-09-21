@@ -1,8 +1,39 @@
 # leicaimage
 
-[![build-badge]][build]
+<p align="center">
+  <a href="https://github.com/MartinHjelmare/leicaimage/actions/workflows/ci.yml?query=branch%3Amain">
+    <img src="https://img.shields.io/github/actions/workflow/status/MartinHjelmare/leicaimage/ci.yml?branch=main&label=CI&logo=github&style=flat-square" alt="CI Status" >
+  </a>
+  <a href="https://codecov.io/gh/MartinHjelmare/leicaimage">
+    <img src="https://img.shields.io/codecov/c/github/MartinHjelmare/leicaimage.svg?logo=codecov&logoColor=fff&style=flat-square" alt="Test coverage percentage">
+  </a>
+</p>
+<p align="center">
+  <a href="https://python-poetry.org/">
+    <img src="https://img.shields.io/endpoint?url=https://python-poetry.org/badge/v0.json" alt="Poetry">
+  </a>
+  <a href="https://github.com/astral-sh/ruff">
+    <img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json" alt="Ruff">
+  </a>
+  <a href="https://github.com/pre-commit/pre-commit">
+    <img src="https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white&style=flat-square" alt="pre-commit">
+  </a>
+</p>
+<p align="center">
+  <a href="https://pypi.org/project/leicaimage/">
+    <img src="https://img.shields.io/pypi/v/leicaimage.svg?logo=python&logoColor=fff&style=flat-square" alt="PyPI Version">
+  </a>
+  <img src="https://img.shields.io/pypi/pyversions/leicaimage.svg?style=flat-square&logo=python&amp;logoColor=fff" alt="Supported Python versions">
+  <img src="https://img.shields.io/pypi/l/leicaimage.svg?style=flat-square" alt="License">
+</p>
 
-Handle Leica Matrix Screener experiment images
+---
+
+**Source Code**: <a href="https://github.com/MartinHjelmare/leicaimage" target="_blank">https://github.com/MartinHjelmare/leicaimage </a>
+
+---
+
+Handle Leica Matrix Screener experiment images.
 
 The leicaimage library is a modified version of the
 [leicaexperiment](https://github.com/arve0/leicaexperiment) library,
@@ -11,7 +42,7 @@ or image processing. This also makes leicaimage work without heavy dependencies.
 
 ## Overview
 
-This is a python module for interfacing with *Leica LAS AF/X Matrix Screener*
+This is a python module for interfacing with _Leica LAS AF/X Matrix Screener_
 experiments.
 
 The module can be used to:
@@ -23,19 +54,13 @@ The module can be used to:
   - z-stack position (Z)
   - channel (C)
 
-## Features
-
-- Access experiment as a python object
-
 ## Installation
 
-Python 3.8+ is required. Install using `pip`:
+Install this via pip (or your favourite package manager):
 
-```bash
-pip install leicaimage
-```
+`pip install leicaimage`
 
-## Examples
+## Usage
 
 ### Access all images
 
@@ -70,21 +95,9 @@ channels = [attribute(image, 'C') for image in experiment.images]
 min_ch, max_ch = min(channels), max(channels)
 ```
 
-## Development
+## Credits
 
-Install dependencies and link development version of leicaimage to pip:
-
-```bash
-git clone https://github.com/MartinHjelmare/leicaimage.git
-cd leicaimage
-pip install -r requirements_dev.txt
-```
-
-### Run tests
-
-```bash
-tox
-```
-
-[build-badge]: https://github.com/MartinHjelmare/leicaimage/workflows/Test/badge.svg
-[build]: https://github.com/MartinHjelmare/leicaimage/actions
+This package was created with
+[Copier](https://copier.readthedocs.io/) and the
+[browniebroke/pypackage-template](https://github.com/browniebroke/pypackage-template)
+project template.

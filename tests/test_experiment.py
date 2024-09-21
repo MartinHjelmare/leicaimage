@@ -175,21 +175,20 @@ def test_missing_attribute_str(experiment):
 def test_attributes(experiment):
     """Test experiment attributes."""
     path = str(Path(experiment.path) / REL_IMAGE_PATH)
-    # pylint: disable-next=use-dict-literal
-    params = dict(
+    attrs = PathAttributes(
         L="00",
         S="00",
         U="00",
         V="00",
         J="20",
         E="00",
-        O="00",  # noqa: E741
+        O="00",
         X="00",
         Y="01",
         T="00",
         Z="00",
         C="00",
-        l=0,  # noqa: E741
+        l=0,
         s=0,
         u=0,
         v=0,
@@ -202,6 +201,5 @@ def test_attributes(experiment):
         z=0,
         c=0,
     )
-    attrs = PathAttributes(**params)
 
     assert attributes(path) == attrs

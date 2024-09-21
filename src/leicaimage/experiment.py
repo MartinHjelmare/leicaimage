@@ -1,11 +1,10 @@
 """Handle Leica experiment."""
 
-import re
+from dataclasses import dataclass
 from itertools import chain
 from pathlib import Path
-from typing import List, Optional
-
-from dataclasses import dataclass
+import re
+from typing import Optional
 
 _SLIDE = "slide"
 _CHAMBER = "chamber"
@@ -17,8 +16,6 @@ _SCANNING_TEMPLATE = r"{ScanningTemplate}"
 
 class Experiment:
     """Leica Matrix Screener experiment."""
-
-    # pylint: disable=too-many-instance-attributes
 
     def __init__(self, path: str) -> None:
         """Set up instance."""
@@ -36,17 +33,17 @@ class Experiment:
         return f"{type(self).__name__}(path={self.path})"
 
     @property
-    def slides(self) -> List[str]:
+    def slides(self) -> list[str]:
         """Return a list of paths to slides."""
         return sorted(str(path) for path in self._path.glob(self._slide_pattern))
 
     @property
-    def wells(self) -> List[str]:
+    def wells(self) -> list[str]:
         """Return a list of paths to wells."""
         return sorted(str(path) for path in self._path.glob(self._well_pattern))
 
     @property
-    def chambers(self) -> List[str]:
+    def chambers(self) -> list[str]:
         """Return a list of paths to chambers.
 
         This is an alias for wells.
@@ -54,12 +51,12 @@ class Experiment:
         return self.wells
 
     @property
-    def fields(self) -> List[str]:
+    def fields(self) -> list[str]:
         """Return a list of paths to fields."""
         return sorted(str(path) for path in self._path.glob(self._field_pattern))
 
     @property
-    def images(self) -> List[str]:
+    def images(self) -> list[str]:
         """Return a list of paths to images."""
         tif_pattern = _pattern(self._image_pattern, extension="tif")
         png_pattern = _pattern(self._image_pattern, extension="png")
@@ -70,17 +67,17 @@ class Experiment:
     @property
     def scanning_template(self) -> str:
         """Path to {ScanningTemplate}name.xml of experiment."""
-        tmpl = list(
+        template = list(
             self._path.glob(
                 _pattern(_ADDITIONAL_DATA, _SCANNING_TEMPLATE, extension="*.xml")
             )
         )
-        if tmpl:
-            return str(tmpl[0])
+        if template:
+            return str(template[0])
         return ""
 
     @property
-    def well_columns(self) -> List[int]:
+    def well_columns(self) -> list[int]:
         """Return all well columns in experiment.
 
         Equivalent to --V in files.
@@ -88,15 +85,16 @@ class Experiment:
         Returns
         -------
         list of ints
+
         """
         return [
             col
-            for col in set(attribute(img, "v") for img in self.images)
+            for col in {attribute(img, "v") for img in self.images}
             if col is not None
         ]
 
     @property
-    def well_rows(self) -> List[int]:
+    def well_rows(self) -> list[int]:
         """Return all well rows in experiment.
 
         Equivalent to --U in files.
@@ -104,10 +102,11 @@ class Experiment:
         Returns
         -------
         list of ints
+
         """
         return [
             row
-            for row in set(attribute(img, "u") for img in self.images)
+            for row in {attribute(img, "u") for img in self.images}
             if row is not None
         ]
 
@@ -131,6 +130,7 @@ class Experiment:
         -------
         string
             Path to image or empty string if image is not found.
+
         """
         return next(
             (
@@ -144,7 +144,7 @@ class Experiment:
             "",
         )
 
-    def well_images(self, well_row: int, well_column: int) -> List[str]:
+    def well_images(self, well_row: int, well_column: int) -> list[str]:
         """Get list of paths to images in specified well.
 
         Parameters
@@ -158,14 +158,15 @@ class Experiment:
         -------
         list of strings
             Paths to images or empty list if no images are found.
+
         """
-        return list(
+        return [
             i
             for i in self.images
             if attribute(i, "u") == well_column and attribute(i, "v") == well_row
-        )
+        ]
 
-    def field_columns(self, well_row: int, well_column: int) -> List[int]:
+    def field_columns(self, well_row: int, well_column: int) -> list[int]:
         """Return field columns for given well.
 
         Equivalent to --X in files.
@@ -181,13 +182,12 @@ class Experiment:
         -------
         list of ints
             Columns found for specified well.
+
         """
         imgs = self.well_images(well_row, well_column)
-        return [
-            col for col in set(attribute(img, "x") for img in imgs) if col is not None
-        ]
+        return [col for col in {attribute(img, "x") for img in imgs} if col is not None]
 
-    def field_rows(self, well_row: int, well_column: int) -> List[int]:
+    def field_rows(self, well_row: int, well_column: int) -> list[int]:
         """Return field rows for given well.
 
         Equivalent to --Y in files.
@@ -203,11 +203,10 @@ class Experiment:
         -------
         list of ints
             Rows found for specified well.
+
         """
         imgs = self.well_images(well_row, well_column)
-        return [
-            row for row in set(attribute(img, "y") for img in imgs) if row is not None
-        ]
+        return [row for row in {attribute(img, "y") for img in imgs} if row is not None]
 
 
 def attribute(path: str, name: str) -> Optional[int]:
@@ -227,6 +226,7 @@ def attribute(path: str, name: str) -> Optional[int]:
     -------
     integer
         Returns number found in path behind --name as an integer.
+
     """
     attr = attribute_as_str(path, name)
     return int(attr) if attr is not None else None
@@ -249,6 +249,7 @@ def attribute_as_str(path: str, name: str) -> Optional[str]:
     -------
     string
         Returns two digit number found in path behind --name.
+
     """
     matches = re.findall("--" + name.upper() + "([0-9]{2})", path)
     if matches:
@@ -260,21 +261,19 @@ def attribute_as_str(path: str, name: str) -> Optional[str]:
 class PathAttributes:
     """Represent a path with attributes."""
 
-    # pylint: disable=invalid-name, too-many-instance-attributes
-
     L: Optional[str] = None
     S: Optional[str] = None
     U: Optional[str] = None
     V: Optional[str] = None
     J: Optional[str] = None
     E: Optional[str] = None
-    O: Optional[str] = None
+    O: Optional[str] = None  # noqa: E741
     X: Optional[str] = None
     Y: Optional[str] = None
     T: Optional[str] = None
     Z: Optional[str] = None
     C: Optional[str] = None
-    l: Optional[int] = None
+    l: Optional[int] = None  # noqa: E741
     s: Optional[int] = None
     u: Optional[int] = None
     v: Optional[int] = None
@@ -304,18 +303,20 @@ def attributes(path: str) -> PathAttributes:
     Parameters
     ----------
     path : string
+        String with path of file/folder to get attribute from.
 
     Returns
     -------
     PathAttributes
         Return a namedtuple with upper case attributes equal to what is found
         in path (string) and lower case as int.
+
     """
     # number of characters set to numbers have changed in LAS AF X !!
     matches = re.findall("--([A-Z]{1})([0-9]{2,4})", path)
 
-    keys: List[str] = []
-    values: List[str] = []
+    keys: list[str] = []
+    values: list[str] = []
     for key, val in matches:
         if key in keys:
             # keep only last key
@@ -373,6 +374,7 @@ def _pattern(*names: str, extension: Optional[str] = None) -> str:
     -------
     string
         Joined glob pattern string.
+
     """
     if extension is None:
         extension = "--*"
