@@ -32,6 +32,7 @@ python = "^3.9"
 mypy = "^1.11.2"
 pytest = "^8.0.0"
 pytest-cov = "^5.0.0"
+python-semantic-release = "^9.8.8"
 
 [tool.ruff]
 line-length = 88
@@ -109,6 +110,7 @@ version_variables = [
 
 [tool.semantic_release.changelog]
 exclude_commit_patterns = [
+  "^Bump.*",
   "Merge pull request .*",
 ]
 
