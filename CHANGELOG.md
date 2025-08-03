@@ -1,13 +1,6 @@
 # CHANGELOG
 
-
-## Unreleased
-
-### Build System
-
-- Run copier update ([#581](https://github.com/MartinHjelmare/leicaimage/pull/581),
-  [`6042cba`](https://github.com/MartinHjelmare/leicaimage/commit/6042cbaa4e676c831881286dd462401052651b88))
-
+<!-- version list -->
 
 ## v0.4.0 (2024-09-21)
 
@@ -15,10 +8,6 @@
 
 - Refresh package tools and layout ([#562](https://github.com/MartinHjelmare/leicaimage/pull/562),
   [`82edd2c`](https://github.com/MartinHjelmare/leicaimage/commit/82edd2c0b7646ba72beeeb6d007835d256ad915f))
-
-BREAKING CHANGE: drop support for python 3.8
-
-Minimum Python version is now 3.9.
 
 ### Breaking Changes
 
