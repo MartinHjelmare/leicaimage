@@ -35,7 +35,7 @@ dev = [
   "codespell==2.4.1",
   "copier==9.10.3",
   "mypy==1.19.1",
-  "pre-commit==4.3.0",
+  "pre-commit==4.5.1",
   "pytest==8.4.2",
   "pytest-cov==7.0.0",
   "python-semantic-release>=10,<11",
