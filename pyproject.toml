@@ -32,7 +32,7 @@ urls.repository = "https://github.com/MartinHjelmare/leicaimage"
 
 [dependency-groups]
 dev = [
-  "codespell==2.4.1",
+  "codespell==2.4.2",
   "copier==9.10.3",
   "mypy==1.19.1",
   "pre-commit==4.3.0",
