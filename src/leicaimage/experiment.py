@@ -325,8 +325,8 @@ def attributes(path: str) -> PathAttributes:
         keys.append(key)
         values.append(val)
 
-    cap_vals = dict(zip(keys, values))
-    low_vals = {key.lower(): int(val) for key, val in zip(keys, values)}
+    cap_vals = dict(zip(keys, values, strict=True))
+    low_vals = {key.lower(): int(val) for key, val in zip(keys, values, strict=True)}
 
     return PathAttributes(
         L=cap_vals.get("L"),
