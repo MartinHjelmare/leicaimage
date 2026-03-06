@@ -4,7 +4,6 @@ from dataclasses import dataclass
 from itertools import chain
 from pathlib import Path
 import re
-from typing import Optional
 
 _SLIDE = "slide"
 _CHAMBER = "chamber"
@@ -209,7 +208,7 @@ class Experiment:
         return [row for row in {attribute(img, "y") for img in imgs} if row is not None]
 
 
-def attribute(path: str, name: str) -> Optional[int]:
+def attribute(path: str, name: str) -> int | None:
     """Return the two numbers found behind --[A-Z] in path.
 
     If several matches are found, the last one is returned.
@@ -232,7 +231,7 @@ def attribute(path: str, name: str) -> Optional[int]:
     return int(attr) if attr is not None else None
 
 
-def attribute_as_str(path: str, name: str) -> Optional[str]:
+def attribute_as_str(path: str, name: str) -> str | None:
     """Return the two numbers found behind --[A-Z] in path.
 
     If several matches are found, the last one is returned.
@@ -261,30 +260,30 @@ def attribute_as_str(path: str, name: str) -> Optional[str]:
 class PathAttributes:
     """Represent a path with attributes."""
 
-    L: Optional[str] = None
-    S: Optional[str] = None
-    U: Optional[str] = None
-    V: Optional[str] = None
-    J: Optional[str] = None
-    E: Optional[str] = None
-    O: Optional[str] = None  # noqa: E741
-    X: Optional[str] = None
-    Y: Optional[str] = None
-    T: Optional[str] = None
-    Z: Optional[str] = None
-    C: Optional[str] = None
-    l: Optional[int] = None  # noqa: E741
-    s: Optional[int] = None
-    u: Optional[int] = None
-    v: Optional[int] = None
-    j: Optional[int] = None
-    e: Optional[int] = None
-    o: Optional[int] = None
-    x: Optional[int] = None
-    y: Optional[int] = None
-    t: Optional[int] = None
-    z: Optional[int] = None
-    c: Optional[int] = None
+    L: str | None = None
+    S: str | None = None
+    U: str | None = None
+    V: str | None = None
+    J: str | None = None
+    E: str | None = None
+    O: str | None = None  # noqa: E741
+    X: str | None = None
+    Y: str | None = None
+    T: str | None = None
+    Z: str | None = None
+    C: str | None = None
+    l: int | None = None  # noqa: E741
+    s: int | None = None
+    u: int | None = None
+    v: int | None = None
+    j: int | None = None
+    e: int | None = None
+    o: int | None = None
+    x: int | None = None
+    y: int | None = None
+    t: int | None = None
+    z: int | None = None
+    c: int | None = None
 
 
 def attributes(path: str) -> PathAttributes:
@@ -357,7 +356,7 @@ def attributes(path: str) -> PathAttributes:
     )
 
 
-def _pattern(*names: str, extension: Optional[str] = None) -> str:
+def _pattern(*names: str, extension: str | None = None) -> str:
     """Return globbing pattern built from names with extension.
 
     Parameters
