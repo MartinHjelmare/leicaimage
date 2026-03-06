@@ -11,7 +11,6 @@ classifiers = [
   "Intended Audience :: Developers",
   "Natural Language :: English",
   "Operating System :: OS Independent",
-  "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
@@ -22,7 +21,7 @@ description = "Handle Leica Matrix Screener experiment images."
 license = {text = "MIT"}
 name = "leicaimage"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 version = "0.4.0"
 
 dependencies = []
@@ -66,7 +65,7 @@ lint.select = [
   "I", # isort
   "RUF", # ruff specific
 ]
-target-version = "py39"
+target-version = "py310"
 
 [tool.pytest.ini_options]
 addopts = """\
