@@ -39,7 +39,7 @@ dev = [
   "pytest==9.1.0",
   "pytest-cov==7.1.0",
   "python-semantic-release>=10,<11",
-  "ruff==0.15.15",
+  "ruff==0.15.17",
 ]
 
 [tool.ruff]
