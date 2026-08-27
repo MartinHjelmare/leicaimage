@@ -67,7 +67,7 @@ Install this via pip (or your favourite package manager):
 ```python
 from leicaimage import Experiment
 
-experiment = Experiment('path/to/experiment--')
+experiment = Experiment("path/to/experiment--")
 
 for image in experiment.images:
     ...
@@ -78,7 +78,7 @@ for image in experiment.images:
 ```python
 from leicaimage import Experiment
 
-experiment = Experiment('path/to/experiment--')
+experiment = Experiment("path/to/experiment--")
 
 # on images in well --U00--V00
 for well in experiment.well_images(0, 0):
@@ -91,7 +91,7 @@ for well in experiment.well_images(0, 0):
 from leicaimage import attribute
 
 # get all channels
-channels = [attribute(image, 'C') for image in experiment.images]
+channels = [attribute(image, "C") for image in experiment.images]
 min_ch, max_ch = min(channels), max(channels)
 ```
 
