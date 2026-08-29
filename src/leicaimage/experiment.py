@@ -293,10 +293,10 @@ def attributes(path: str) -> PathAttributes:
     in path (string) and lower case as int.
     If path holds several occurrences of same character, only the last one is kept.
 
-        >>> attrs = attributes('/folder/file--X00-X01.tif')
-        >>> print(attrs)
-        PathAttributes(X='01', x=1)
-        >>> print(attrs.x)
+        >>> attrs = attributes('/folder/file--X00--X01.tif')
+        >>> attrs.X
+        '01'
+        >>> attrs.x
         1
 
     Parameters

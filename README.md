@@ -15,8 +15,8 @@
   <a href="https://github.com/astral-sh/ruff">
     <img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json" alt="Ruff">
   </a>
-  <a href="https://github.com/pre-commit/pre-commit">
-    <img src="https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white&style=flat-square" alt="pre-commit">
+  <a href="https://github.com/j178/prek">
+    <img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/j178/prek/master/docs/assets/badge-v0.json" alt="prek">
   </a>
 </p>
 <p align="center">
@@ -64,10 +64,11 @@ Install this via pip (or your favourite package manager):
 
 ### Access all images
 
+<!--skip-->
 ```python
 from leicaimage import Experiment
 
-experiment = Experiment('path/to/experiment--')
+experiment = Experiment("path/to/experiment--")
 
 for image in experiment.images:
     ...
@@ -75,10 +76,11 @@ for image in experiment.images:
 
 ### Access specific wells/fields
 
+<!--skip-->
 ```python
 from leicaimage import Experiment
 
-experiment = Experiment('path/to/experiment--')
+experiment = Experiment("path/to/experiment--")
 
 # on images in well --U00--V00
 for well in experiment.well_images(0, 0):
@@ -87,11 +89,12 @@ for well in experiment.well_images(0, 0):
 
 ### Extract attributes from file names
 
+<!--skip-->
 ```python
 from leicaimage import attribute
 
 # get all channels
-channels = [attribute(image, 'C') for image in experiment.images]
+channels = [attribute(image, "C") for image in experiment.images]
 min_ch, max_ch = min(channels), max(channels)
 ```
 
