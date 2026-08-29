@@ -14,23 +14,10 @@ concurrency:
 jobs:
   lint:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          ref: ${{ github.head_ref || github.ref }}
       - uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
       - uses: j178/prek-action@4e14d07f9231acabce116ccfca13b13dd9755ece # v3.0.0
-        id: prek
-        continue-on-error: true
-      - uses: pre-commit-ci/lite-action@5d6cc0eb514c891a40562a58a8e71576c5c7fb43 # v1.1.0
-        if: always()
-        with:
-          msg: "chore: auto-fix from pre-commit hooks"
-      - name: Fail if hooks failed
-        if: steps.prek.outcome == 'failure'
-        run: exit 1
 
   # Make sure commit messages follow the conventional commits convention:
   # https://www.conventionalcommits.org
