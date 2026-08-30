@@ -2,6 +2,18 @@
 
 <!-- version list -->
 
+## v0.6.0 (2026-08-30)
+
+### Chores
+
+- Require Python 3.11 ([#653](https://github.com/MartinHjelmare/leicaimage/pull/653),
+  [`0e4a6bf`](https://github.com/MartinHjelmare/leicaimage/commit/0e4a6bfa7a1448c83de7d7ed772f695971232c78))
+
+### Breaking Changes
+
+- Drop support for Python 3.10
+
+
 ## v0.5.0 (2026-03-06)
 
 ### Build System
