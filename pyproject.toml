@@ -33,7 +33,7 @@ urls.repository = "https://github.com/MartinHjelmare/leicaimage"
 dev = [
   "codespell==2.4.3",
   "copier==9.18.1",
-  "prek==0.5.1",
+  "prek==0.5.2",
   "pytest==9.1.1",
   "pytest-cov==7.1.0",
   "python-semantic-release==10.6.2",
