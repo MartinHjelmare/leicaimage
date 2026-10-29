@@ -39,7 +39,7 @@ dev = [
   "python-semantic-release==10.7.0",
   "ruff==0.17.0",
   "sybil==10.1.0",
-  "ty==0.0.87",
+  "ty==0.0.88",
 ]
 
 [tool.ruff]
